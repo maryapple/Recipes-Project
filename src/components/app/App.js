@@ -7,7 +7,7 @@ import './app.css'
 
 class App extends React.Component  {
     state = {
-        selectedBeer: null
+        selectedBeer: 2
     }
 
     changeBeerIdHandler = (e) => {
@@ -15,22 +15,22 @@ class App extends React.Component  {
     }
 
     render () {
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <div className="container">
                 <AppHeader />
 
-                <div className="d-flex">
+                {/* <div className="d-flex"> */}
 
                     <div className="app-column">
                         <Selector changeBeer={this.changeBeerIdHandler} />
                         <Card beerIdForCard={this.state.selectedBeer}/>
                     </div>
-                    <div className="app-column">
-                        <Selector changeBeer={this.changeBeerIdHandler}/>
+                   {/*  <div className="app-column">
+                        <SecondSelector changeBeer={this.changeBeerIdHandler}/>
                         <Card beerIdForCard={this.state.selectedBeer}/>
-                    </div>
-                </div>
+                    </div> */}
+                {/* </div> */}
             </div>
         )
     }

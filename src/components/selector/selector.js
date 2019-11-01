@@ -7,19 +7,13 @@ const Selector = (props) => {
 
     const arr = data.map((elem) => {
         return (
-            <Option {...elem} />
-        )
+            <Option {...elem}  />
+           )
     })
 
     return (
         <div className="select-style">
-            <select 
-            className="custom-select"
-            onChange={props.changeBeer}
-            >
-                <option>
-                    Select the beer
-                </option>
+            <select className="custom-select" onChange={props.changeBeer}>
                 {arr}
             </select>
         </div>
