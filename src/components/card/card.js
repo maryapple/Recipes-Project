@@ -1,18 +1,15 @@
 import React from 'react'
 import './card.css'
 import data from '../data'
-import Image from '../image'
 
 const Card = (props) => {
     const beer = data.find((beer) => {
         return beer.id === Number(props.beerIdForCard)
     })
-    // console.log(beer.name)
+    
     return (
         <div className="card alignment-card-block">
-            {/* <img src="https://source.unsplash.com/200x100/?beer" className="card-img-top" alt="photo" /> */}
-            {/* <Image /> */}
-            <img src={Image()}></img>
+            {props.loading ? 'Loading image...' : <img src={props.imageUrl} alt="" />}
             <div className="card-body">
                 <h5 className="card-title">{beer.name}</h5>
                 <p className="card-text">

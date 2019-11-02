@@ -7,11 +7,25 @@ import './app.css'
 
 class App extends React.Component  {
     state = {
-        selectedBeer: 2
+        selectedBeer: 2,
+        loading: false,
+        imageUrl: 'https://source.unsplash.com/200x100/?beer'
     }
 
     changeBeerIdHandler = (e) => {
-        this.setState({selectedBeer: e.target.value})
+        this.setState({ loading: true })
+        this.setState({ selectedBeer: e.target.value })
+        this.getBeerImage()
+    }
+
+    getBeerImage = () => {
+        fetch('https://source.unsplash.com/200x100/?beer')
+            .then(res => {
+                this.setState({
+                    imageUrl: res.url,
+                    loading: false
+                })
+            })
     }
 
     render () {
@@ -19,18 +33,13 @@ class App extends React.Component  {
         return (
             <div className="container">
                 <AppHeader />
-
-                {/* <div className="d-flex"> */}
-
-                    <div className="app-column">
-                        <Selector changeBeer={this.changeBeerIdHandler} />
-                        <Card beerIdForCard={this.state.selectedBeer}/>
-                    </div>
-                   {/*  <div className="app-column">
-                        <SecondSelector changeBeer={this.changeBeerIdHandler}/>
-                        <Card beerIdForCard={this.state.selectedBeer}/>
-                    </div> */}
-                {/* </div> */}
+                <div className="app-column">
+                    <Selector changeBeer={this.changeBeerIdHandler} />
+                    <Card
+                        beerIdForCard={this.state.selectedBeer}
+                        loading={this.state.loading}
+                        imageUrl={this.state.imageUrl} />
+                </div>
             </div>
         )
     }
